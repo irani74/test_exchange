@@ -1,0 +1,13 @@
+
+{% for item in form %}
+    <div>
+        <span>{{ item.label }}</span>
+        <span>{{ item }}</span>
+        <span>{{ item.errors }}</span>
+    </div>
+    <hr>
+{% endfor %}
+
+{% for error in form.non_fields_errors %}
+    {{ error }}
+{% endfor %}

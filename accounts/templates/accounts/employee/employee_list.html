@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for employee in employees %}
+        {{ employee.user.first_name }}
+        {{ employee.user.last_name }}
+        <a href="{% url 'accounts:employee_detail' employee.id %}">جزئیات</a>
+        <hr>
+    {% endfor %}
+</body>
+</html>

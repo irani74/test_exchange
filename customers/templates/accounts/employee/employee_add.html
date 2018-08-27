@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" action="{% url 'accounts:employee_add' %}">
+        {% csrf_token %}
+        {% include 'accounts/form_renderer.html' with form=form only %}
+        <button type="submit" value="ارسال">ارسال</button>
+    </form>
+</body>
+</html>
