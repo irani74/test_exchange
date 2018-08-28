@@ -18,7 +18,7 @@ from django.urls import path, include
 
 from test_exchange.views import About , Laws , HomePage
 from transactions.views import TestExchange , CurencyNow , TransactionsCosts
-
+from accounts.views import HomePage2
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
@@ -27,11 +27,13 @@ urlpatterns = [
     path('employee/', include('employee.urls')),
     path('hesaab/', include('hesaab.urls')),
     path('manager/', include('manager.urls')),
-    path('home/', HomePage.as_view(), name='home_page'),
+    path('home/', HomePage2.as_view(), name='home_page2'),
     path('test exchange/', TestExchange.as_view(), name='test_exchanged'),
     path('curency now/', CurencyNow.as_view(), name='curency_now'),
     path('transactions cost/', TestExchange.as_view(), name='transaction_cost'),
     path('', HomePage.as_view(), name='home_page'),
+
+
 
     path('about/', About.as_view(), name='about'),
     path('laws/', Laws.as_view(), name='laws'),

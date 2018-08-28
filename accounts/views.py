@@ -10,16 +10,25 @@ from accounts.forms import LoginForm
 from accounts.models import ROLE_TYPE_EMPLOYEE, ROLE_TYPE_MANAGER
 
 
+class HomePage2(View):
+
+    @staticmethod
+    def get(request):
+        #form = LoginForm()
+        return render(request, 'accounts/base/home_page.html', {
+            #'form': form,
+        })
+
 class Login(View):
-    @method_decorator(csrf_exempt, name='log_in')
+    #@method_decorator(csrf_exempt, name='log_in')
     @staticmethod
     def get(request):
         form = LoginForm()
         return render(request, 'accounts/authentication/login.html', {
-            'form': form,
+            'form': form
         })
 
-    @method_decorator(csrf_exempt, name='log_iner')
+    #@method_decorator(csrf_exempt, name='log_iner')
     @staticmethod
     def post(request):
         form = LoginForm(request.POST)

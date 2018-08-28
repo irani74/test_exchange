@@ -11,10 +11,11 @@ class LoginForm(forms.Form):
     #role_type = ROLE_TYPE_CUSTOMER
 
     def clean(self):
-        valid_users = User.objects.filter(username=self.cleaned_data['username'], password=self.cleaned_data['password'] )
+        valid_users = User.objects.filter(username=self.cleaned_data['username'],password=self.cleaned_data['password'])
         if len(valid_users) < 1:
             raise forms.ValidationError('نام کاربری یا رمز اشتباه است.')
-
+        else:
+            return valid_users
 
 
 class SignupForm(forms.Form):

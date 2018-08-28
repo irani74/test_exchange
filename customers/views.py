@@ -59,19 +59,17 @@ class Login(View):
 
     @staticmethod
     def post(request):
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            #password = form.cleaned_data['password']
-            password = request.POST['password']
-            username = form.cleaned_data['username']
-            #username = request.POST['username']
-            user = authenticate(request, username=username, password=password )
-            if user is not None:
-                #login(request, user)
-                return redirect('home_page')
-        return render(request, 'accounts/authentication/login.html', {
-            'form': form,
-        })
+            form = LoginForm(request.POST)
+            if form.is_valid():
+                #password = form.cleaned_data['password']
+                #username = request.POST['username']
+                user = authenticate(request, email=form.cleaned_data['username'], password=request.POST['password'] )
+                if user is not None:
+                    #login(request, user)
+                    return redirect('contact:thanks')
+            return render(request, 'accounts/authentication/login.html', {
+                'form': form,
+            })
 
 
 
