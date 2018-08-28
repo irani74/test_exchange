@@ -1,14 +1,13 @@
 from django.conf.urls import url
 from django.urls import path
 
-from accounts.views import Login, Logout , HomePage
+from accounts.views import Login, Logout
 
 app_name = 'accounts'
 urlpatterns = [
 #    path('signup/', Signup.as_view(), name='signup'),
     path('login/', Login.as_view(), name='login'),
     path('logout/', Logout.as_view(), name='logout'),
-    path('home/', HomePage.as_view(), name='home_page'),
 
     #   path('employee_list/', EmployeeList.as_view(), name='employee_list'),
   #  url(r'employee_detail/(?P<employee_id>[0-9]+)/$', EmployeeDetail.as_view(), name='employee_detail'),

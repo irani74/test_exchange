@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'transactions.apps.TransactionsConfig',
     'accounts.apps.AccountsConfig',
     'contact.apps.ContactConfig',
-    'customers.apps.CustomersConfig',
+    'customers',
     'employee.apps.EmployeeConfig',
     'hesaab.apps.HesaabConfig',
     'manager.apps.ManagerConfig',

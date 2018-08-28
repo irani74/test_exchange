@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <div>توجه: قیمت ها به تومان می باشد</div>
+        {% for item in form %}
+            <div>
+                <span>{{ item.label }}</span>
+                <span>{{ item }}</span>
+            </div>
+            <hr>
+        {% endfor %}
+
+
+
+
+        <div>          <a href="{% url 'home_page'  %}">صفحه اصلی</a> </div>
+
+        <div>          <a href="{% url 'test_exchanged'  %}">شبیه سازی تراکنش</a> </div>
+
+
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.core.mail import send_mail, get_connection
@@ -59,7 +59,10 @@ def login(request):
 
 
 @method_decorator(csrf_exempt, name='havig')
+
 def contact(request):
+
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -72,10 +75,10 @@ def contact(request):
                 #['siteowner@example.com'],
                 #connection=con
             #)
-            return HttpResponseRedirect('/contact/thanks/')
+            return redirect('contact:thanks')
     else:
         form = ContactForm(
-            initial={'subject': 'I love your site!'}
+            initial={'subject': 'سایت پرداخت ارزی امیر بسیار عالیست!'}
         )
 
     return render(request, 'contact_form.html', {'form': form})

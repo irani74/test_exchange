@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>صفحه اصلی</title>
+</head>
+<body>
+
+
+        <div>          <a href="{% url 'home_page'  %}">صفحه اصلی</a></div>
+
+        <div>          <a href="{% url 'customers:login'  %}">ورود</a></div>
+
+        <div>          <a href="{% url 'accounts:logout'  %}">خروج از حساب کاربری</a> </div>
+
+        <div>          <a href="{% url 'curency_now'  %}">نرخ لحظه ای ارز</a> </div>
+
+        <div>          <a href="{% url 'test_exchanged'  %}">انجام تبدیل آزمایشی</a> </div>
+
+        <div>          <a href="{% url 'transaction_cost'  %}">نرخ کارمزد</a> </div>
+
+        <div>          <a href="{% url 'about'  %}">درباره ی ما</a> </div>
+
+        <div>          <a href="{% url 'laws'  %}">قوانین</a> </div>
+
+        <div>          <a href="{% url 'contact:contact'  %}">ارتباط با ما</a> </div>
+
+
+</body>
+</html>
+

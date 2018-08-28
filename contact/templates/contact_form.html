@@ -1,15 +1,32 @@
+{% extends 'accounts/base.html' %}
+
+
 <html>
 <head>
-    <title>Contact us</title>
+    <title>ارتباط با ما</title>
 </head>
 <body>
-    <h1>Contact us</h1>
+    <h1>ارتباط با ما</h1>
 
     {% if form.errors %}
         <p style="color: red;">
             Please correct the error{{ form.errors|pluralize }} below.
         </p>
     {% endif %}
+
+
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {% include 'accounts/form_renderer.html' with form=form only %}
+        <button type="submit">ارسال</button>
+    </form>
+{% endblock %}
+
+
+
+
 
     <form action="" method="post">
         <div class="field">
@@ -29,6 +46,3 @@
         </div>
         <input type="submit" value="Submit">
     </form>
-
-
-

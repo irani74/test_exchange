@@ -27,7 +27,7 @@ class Signup(View):
         if form.is_valid():
             form.save()
             #login(request, profile.user)
-            return redirect('accounts:home_page')
+            return redirect('home_page')
         return render(request, 'accounts/authentication/signup.html', {
             'form': form,
         })
@@ -53,7 +53,7 @@ class Login(View):
     @staticmethod
     def get(request):
         form = LoginForm()
-        return render(request, 'tehran payment/default.htm', {
+        return render(request, 'accounts/authentication/login.html', {
             'form': form,
         })
 
@@ -61,20 +61,18 @@ class Login(View):
     def post(request):
         form = LoginForm(request.POST)
         if form.is_valid():
-            user = authenticate(request, username=form.cleaned_data['email'], password=request.POST['password'] )
+            #password = form.cleaned_data['password']
+            password = request.POST['password']
+            username = form.cleaned_data['username']
+            #username = request.POST['username']
+            user = authenticate(request, username=username, password=password )
             if user is not None:
-                login(request, user)
-                return redirect('accounts/employee/employee_list.html')
+                #login(request, user)
+                return redirect('home_page')
         return render(request, 'accounts/authentication/login.html', {
             'form': form,
         })
 
-
-class Logout(View):
-    @staticmethod
-    def post(request):
-        logout(request.user)
-        #redirect
 
 
 class EditProfile(View):
