@@ -24,7 +24,6 @@ class SignupForm(forms.Form):
     first_name = forms.CharField(required=True, label='نام')
     last_name = forms.CharField(required=True, label='نام خانوادگی')
 
-
     def save(self):
         user = User.objects.create(username=self.cleaned_data['email'],
                                    password=self.cleaned_data['password'],
