@@ -5,11 +5,20 @@
     <title>صفحه اصلی</title>
 </head>
 <body>
-
+{% if user.is_authenticated %}
+  <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+{% else %}
+  <p>Welcome, new user. Please log in.</p>
+{% endif %}
 
         <div>          <a href="{% url 'home_page'  %}">صفحه اصلی</a></div>
 
-        <div>          <a href="{% url 'accounts:login'  %}">ورود</a></div>
+        <div>          <a href="{% url 'customers:signup'  %}">ثبت نام</a></div>
+
+        <div>          <a href="{% url 'customers:edit_profile'  %}">تغییر اطلاعات شخصی</a></div>
+
+
+        <div>          <a href="{% url 'customers:login'  %}">ورود</a></div>
 
         <div>          <a href="{% url 'accounts:logout'  %}">خروج از حساب کاربری</a> </div>
 

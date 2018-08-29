@@ -17,5 +17,12 @@ class LoginForm(forms.Form):
         valid_users = User.objects.filter(username=self.cleaned_data['username'], password=self.cleaned_data['password'] )#, customers_profile__role=ROLE_TYPE_CUSTOMER)
         if len(valid_users) < 1:
             raise forms.ValidationError('نام کاربری یا رمز اشتباه است.')
-        return 1
+
+
+
+
+    #def clean(self):
+     #   user = authenticate(username=self.cleaned_data['username'], password=self.cleaned_data['password'])
+      #  if user is None:
+       #     raise forms.ValidationError('نام کاربری یا رمز اشتباه است.')
 

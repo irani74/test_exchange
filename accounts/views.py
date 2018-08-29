@@ -10,15 +10,6 @@ from accounts.forms import LoginForm
 from accounts.models import ROLE_TYPE_EMPLOYEE, ROLE_TYPE_MANAGER
 
 
-class HomePage2(View):
-
-    @staticmethod
-    def get(request):
-        #form = LoginForm()
-        return render(request, 'accounts/base/home_page.html', {
-            #'form': form,
-        })
-
 class Login(View):
     #@method_decorator(csrf_exempt, name='log_in')
     @staticmethod
@@ -34,7 +25,7 @@ class Login(View):
         form = LoginForm(request.POST)
         if form.is_valid():
 
-            user = authenticate(request, username=form.cleaned_data['email'] , password= request.POST['password'])
+            user = authenticate(request, username=form.cleaned_data['username'] , password= request.POST['password'])
             if user is not None:
                 #login(request, user)
                 return redirect('home_page')
@@ -42,10 +33,9 @@ class Login(View):
             'form': form,
         })
 
-
 class Logout(View):
     @staticmethod
-    def post(request):
+    def get(request):
         logout(request.user)
         #redirect
         return redirect('home_page')

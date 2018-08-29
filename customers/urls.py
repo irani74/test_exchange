@@ -1,12 +1,14 @@
 from django.conf.urls import url
 from django.urls import path
 
-from customers.views import Signup, Login #, Logout
+from customers.views import Signup, Login , EditProfile #, Logout
 
 app_name = 'customers'
 urlpatterns = [
     url('signup/', Signup.as_view(), name='signup'),
     url('login/', Login.as_view(), name='login'),
+    url('edit profile/', EditProfile.as_view(), name='edit_profile'),
+
     #url('logout/', Logout.as_view(), name='logout'),
 
     # url('employee_list/', EmployeeList.as_view(), name='employee_list'),

@@ -7,15 +7,13 @@ from datetime import datetime
 from accounts.models import ROLE_TYPES
 from transactions.models import PAY_TYPES, MONEY_TYPES
 
-
-
 class Customers_Profile(models.Model):
     user = models.OneToOneField(to='auth.User', on_delete=models.CASCADE, null=True, blank=True)
     role = models.CharField(max_length=20, choices=ROLE_TYPES, null=True, blank=True)
 
-    #mobile = models.CharField(max_length=15, null=True, blank=True)
-    #fixed_phone = models.CharField(max_length=15, null=True, blank=True)
-    #shaba = models.CharField(max_length=30, null=True, blank=True)
+    mobile = models.CharField(max_length=15, null=True, blank=True)
+    fixed_phone = models.CharField(max_length=15, null=True, blank=True)
+    shaba = models.CharField(max_length=30, null=True, blank=True)
 
     #account_id = models.ForeignKey(to=user , on_delete=models.CASCADE ,related_name='')
 #####################################################

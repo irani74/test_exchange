@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib import sessions
 from django.contrib.auth.models import User
+from django.db import connection
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -59,17 +60,30 @@ class Login(View):
 
     @staticmethod
     def post(request):
-            form = LoginForm(request.POST)
-            if form.is_valid():
-                #password = form.cleaned_data['password']
-                #username = request.POST['username']
-                user = authenticate(request, email=form.cleaned_data['username'], password=request.POST['password'] )
-                if user is not None:
-                    #login(request, user)
-                    return redirect('contact:thanks')
-            return render(request, 'accounts/authentication/login.html', {
-                'form': form,
-            })
+        form = LoginForm(request.POST)
+        print('in post')
+
+        if form.is_valid():
+            print('in first if')
+            #password = form.cleaned_data['password']
+            #username = request.POST['username']
+
+            user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password'] )
+
+            print(user)
+            print('user must be printed')
+            if (user is not None) or (Customers_Profile.user != ROLE_TYPE_CUSTOMER):
+                print('user not none ')
+                login(request, user)
+                #request.session['UserId'] = user.id
+                #request.session['ProfileId'] = user.Cus
+
+                return redirect(reverse('home_page'))
+
+
+        return render(request, 'accounts/authentication/login.html', {
+            'form': form,
+        })
 
 
 
@@ -77,9 +91,21 @@ class EditProfile(View):
     @staticmethod
     def get(request):
         form = Edit_ProfileForm()
-        return render(request, 'Edit_ProfileForm.html', {
-            'form': form,
+        #user = request.session['User']
+        print('username:')
+        user2 = request.user
+        print(user2)
+
+
+        print('mobile:')
+        print(user2.customer_profile.mobile)
+
+
+        return render(request, 'accounts/edit_profile.html', {
+        'form': form,
         })
+
+
 
     @staticmethod
     def post(request):
@@ -90,8 +116,8 @@ class EditProfile(View):
             #حتما نباید لاگین شه
             #login(request, profile.user)
             #ادرس صفحه ی بعد از عضویت. یا لاگ این. یا تایید با ایمیل
-            return redirect('')#url
-        return render(request, 'Edit_ProfileForm.html', {
+            return redirect('contact:thanks')#url
+        return render(request, 'accounts/edit_profile.html', {
             'form': form, #changed ??????
         })
 

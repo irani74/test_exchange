@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth import authenticate
+from django.contrib import auth
 from django.contrib.auth.models import User
 
 from accounts.models import ROLE_TYPE_CUSTOMER
@@ -8,14 +10,21 @@ from customers.models import Customers_Profile
 class LoginForm(forms.Form):
     username = forms.CharField(required=True, label='ایمیل')
     password = forms.CharField(required=True, label='رمز', widget=forms.PasswordInput)
-    #role_type = ROLE_TYPE_CUSTOMER
+    role_type = ROLE_TYPE_CUSTOMER
+
+    #def clean(self):
+     #   valid_users = User.objects.filter(username=self.cleaned_data['username'],password=self.cleaned_data['password'])
+      #  if len(valid_users) < 1:
+       #     raise forms.ValidationError('نام کاربری یا رمز اشتباه است.')
 
     def clean(self):
-        valid_users = User.objects.filter(username=self.cleaned_data['username'],password=self.cleaned_data['password'])
-        if len(valid_users) < 1:
+        user = authenticate(username=self.cleaned_data['username'], password=self.cleaned_data['password'] )
+
+        if user is None :
             raise forms.ValidationError('نام کاربری یا رمز اشتباه است.')
-        else:
-            return valid_users
+
+
+
 
 
 class SignupForm(forms.Form):
@@ -25,13 +34,16 @@ class SignupForm(forms.Form):
     last_name = forms.CharField(required=True, label='نام خانوادگی')
 
     def save(self):
-        user = User.objects.create(username=self.cleaned_data['email'],
-                                   password=self.cleaned_data['password'],
+        user = User.objects.create_user(username=self.cleaned_data['email'],
                                    email=self.cleaned_data['email'],
                                    first_name=self.cleaned_data['first_name'],
                                    last_name=self.cleaned_data['last_name'],
                                    #role=ROLE_TYPE_CUSTOMER
+                                   password=self.cleaned_data['password']
                                    )
+        #user2 = User.objects.create(user)
+
+        #user.set_password(self.cleaned_data['password'])
         profile = Customers_Profile.objects.create(user=user,
                                          role=ROLE_TYPE_CUSTOMER)
         return profile
@@ -54,16 +66,16 @@ class Edit_ProfileForm(forms.Form):
     #غیر قابل تغییر: نام. نام خانوادگی. ایمیل.
     #قابل تغییر: موبایل. تلفن ثابت. شماره شبا
 
-    mobile = forms.CharField(required=False, label='موبایل')
-    fixed_phone = forms.CharField(required=False, label='تلفن ثابت')
-    shaba = forms.CharField(required=False, label='شماره شبا')
+    mobile = forms.CharField(required=False, label='موبایل' )#,initial=str(Customers_Profile.mobile) )
+    fixed_phone = forms.CharField(required=False, label='تلفن ثابت' )#,initial=str(Customers_Profile.fixed_phone ))
+    shaba = forms.CharField(required=False, label= 'شماره شبا')#,initial=str(Customers_Profile.shaba ))
     changeed = 0
 
     def save(self):
         self.changeed = 1
         user = Customers_Profile.objects.update(mobile=self.cleaned_data['mobile'],
                                                 fixed_phone=self.cleaned_data['fixed_phone'],
-                                                shaba=self.cleaned_data['shaba']
+                                                shaba=self.cleaned_data['shaba'],
                                                 )
         return user
 

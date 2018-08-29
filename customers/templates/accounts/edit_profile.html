@@ -1,0 +1,13 @@
+
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {% include 'form_renderer.html' with form=form only %}
+        <button type="submit">تغییر اطلاعات</button>
+    </form>
+
+                <div>          <a href="{% url 'home_page'  %}">صفحه اصلی</a></div>
+
+{% endblock %}

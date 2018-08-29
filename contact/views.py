@@ -79,6 +79,7 @@ def contact(request):
     else:
         form = ContactForm(
             initial={'subject': 'سایت پرداخت ارزی امیر بسیار عالیست!'}
+
         )
 
     return render(request, 'contact_form.html', {'form': form})
