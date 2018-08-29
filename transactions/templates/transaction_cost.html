@@ -5,11 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-    {% for employee in employees %}
-        {{ employee.user.first_name }}
-        {{ employee.user.last_name }}
-        <a href="{% url 'accounts:employee_detail' employee.id %}">جزئیات</a>
+    {% for cost in form %}
+        از
+                {{ cost.money_type }}
+
+        {{ cost.pay_type }}
+        شروع از
+        {{ cost.start }}
+        تا
+        {{ cost.end }}
+        کارمزد
+        {{ cost.percent }}
+        درصد
         <hr>
     {% endfor %}
+        <div>          <a href="{% url 'home_page'  %}">صفحه اصلی</a></div>
+
 </body>
 </html>
+
+

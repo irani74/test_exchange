@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from test_exchange.views import About , Laws , HomePage
-from transactions.views import TestExchange , CurencyNow #, TransactionsCosts
+from transactions.views import TestExchange , CurencyNow , TransactionsCosts
 #from accounts.views import HomePage2
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,7 +30,7 @@ urlpatterns = [
     #path('home/', HomePage2.as_view(), name='home_page2'),
     path('test exchange/', TestExchange.as_view(), name='test_exchanged'),
     path('curency now/', CurencyNow.as_view(), name='curency_now'),
-    path('transactions cost/', TestExchange.as_view(), name='transaction_cost'),
+    path('transactions cost/', TransactionsCosts.as_view(), name='transaction_cost'),
     path('', HomePage.as_view(), name='home_page'),
 
 

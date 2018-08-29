@@ -38,7 +38,7 @@ class SignupForm(forms.Form):
                                    email=self.cleaned_data['email'],
                                    first_name=self.cleaned_data['first_name'],
                                    last_name=self.cleaned_data['last_name'],
-                                   #role=ROLE_TYPE_CUSTOMER
+                                   #role=ROLE_TYPE_CUSTOMER,
                                    password=self.cleaned_data['password']
                                    )
         #user2 = User.objects.create(user)
@@ -71,12 +71,17 @@ class Edit_ProfileForm(forms.Form):
     shaba = forms.CharField(required=False, label= 'شماره شبا')#,initial=str(Customers_Profile.shaba ))
     changeed = 0
 
-    def save(self):
+    def save(self , user):
         self.changeed = 1
-        user = Customers_Profile.objects.update(mobile=self.cleaned_data['mobile'],
+
+        #user = \
+        print('shaba in form')
+        print(user.shaba)
+        user.objects.update(mobile=self.cleaned_data['mobile'],
                                                 fixed_phone=self.cleaned_data['fixed_phone'],
                                                 shaba=self.cleaned_data['shaba'],
                                                 )
+        print(user.shaba)
         return user
 
 

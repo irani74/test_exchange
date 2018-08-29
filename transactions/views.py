@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 import json
 import requests
-#from transactions.models import TransactionCost
+
+from transactions.forms import TransactionCostForm
+from transactions.models import TransactionCost
 
 class Addition(View):
     pass
@@ -82,18 +84,72 @@ class CurencyNow(View):
 
 
 
-#class TransactionsCosts(View):
- #   TransactionCost.objects.create(pay_type= 'تبدیل به دلار' , money_type= 'تومان', start= 10000, end= 1000000, percent= 5)
-  #  TransactionCost.objects.create(pay_type= 'تبدیل به ریال' , money_type= 'دلار', start= 10, end= 100, percent= 2)
-   # TransactionCost.objects.create(pay_type= 'تبدیل به یورو' , money_type= 'تومان', start= 10000, end= 100000, percent= 6)
-    #TransactionCost.objects.create(pay_type= 'واریز به حساب داخلی' , money_type= 'تومان', start= 1000, end= 1000000, percent= 3)
-   # TransactionCost.objects.create(pay_type= 'واریز به حساب دلار' , money_type= 'دلار', start= 10, end= 100, percent= 7)
-  #  TransactionCost.objects.create(pay_type= 'واریز به حساب یورو' , money_type= 'یورو', start= 10, end= 100, percent= 5)
+#class EmployeeList(View):
+ #   @staticmethod
+  #  def get(request):
+   #     employees = Employee_Profile.objects.filter(role=ROLE_TYPE_EMPLOYEE)
+    #    return render(request, 'accounts/employee/employee_list.html', context={
+     #       'employees': employees,
+      #  })
 
- #   def print_costs(self):
-#        return render(self , 'transaction_cost.html')
+class TransactionsCosts(View):
+
+    @staticmethod
+    def get(request):
+        form = TransactionCost.objects.all()
+        return render(request, 'transaction_cost.html' ,context={
+
+                    'form': form}
+                      )
+
+    def new_item(self):
+        TransactionCost.objects.all().delete()
+        TransactionCost.objects.create(pay_type='تبدیل به دلار', money_type='تومان', start=10000, end=1000000,
+                                       percent=5)
+        TransactionCost.objects.create(pay_type='تبدیل به ریال', money_type='دلار', start=10, end=100, percent=2)
+        TransactionCost.objects.create(pay_type='تبدیل به یورو', money_type='تومان', start=10000, end=100000, percent=6)
+        TransactionCost.objects.create(pay_type='واریز به حساب داخلی', money_type='تومان', start=1000, end=1000000,
+                                       percent=3)
+        TransactionCost.objects.create(pay_type='واریز به حساب دلار', money_type='دلار', start=10, end=100, percent=7)
+        TransactionCost.objects.create(pay_type='واریز به حساب یورو', money_type='یورو', start=10, end=100, percent=5)
+        return redirect('contact:thanks')#url
 
 
 class TestExchange(View):
-    pass
+
+    @staticmethod
+    def get(request):
+        form = TransactionCost.objects.all()
+        return render(request, 'transaction_cost.html' ,context={
+
+                    'form': form}
+                      )
+
+
+    @staticmethod
+    def post(request):
+        pass
+
+
+
+
+class Signup(View):
+    @staticmethod
+    def get(request):
+        #form = SignupForm()
+        return render(request, 'accounts/authentication/signup.html', {
+            #'form': form,
+        })
+
+    @staticmethod
+    def post(request):
+        #form = SignupForm(request.POST)
+        #if form.is_valid():
+         #   form.save()
+            #login(request, profile.user)
+            #return redirect('home_page')
+        return render(request, 'accounts/authentication/signup.html', {
+            #'form': form,
+        })
+
 

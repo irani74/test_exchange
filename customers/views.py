@@ -93,16 +93,23 @@ class EditProfile(View):
         form = Edit_ProfileForm()
         #user = request.session['User']
         print('username:')
-        user2 = request.user
-        print(user2)
 
+        customer_profile=Customers_Profile.objects.get(user=request.user)
 
+        print('role:')
+        print(customer_profile.role)
         print('mobile:')
-        print(user2.customer_profile.mobile)
-
+        print(customer_profile.mobile)
+        print('fixed:')
+        print(customer_profile.fixed_phone)
+        print('shaba:')
+        print(customer_profile.shaba)
+        form.shaba = customer_profile.shaba
+        form.mobile = customer_profile.mobile
+        form.fixed_phone = customer_profile.fixed_phone
 
         return render(request, 'accounts/edit_profile.html', {
-        'form': form,
+            'form': form,
         })
 
 
@@ -111,8 +118,19 @@ class EditProfile(View):
     def post(request):
         form = Edit_ProfileForm(request.POST)
         if form.is_valid():
+
             #profile =
-            form.save()
+            print('save form')
+            userProfile = Customers_Profile.objects.get(user=request.user)
+
+            userProfile.update(mobile=form.cleaned_data['mobile'],
+                                fixed_phone=form.cleaned_data['fixed_phone'],
+                                shaba=form.cleaned_data['shaba'],
+                                )
+
+
+            #form.save(user)
+            #print(form)
             #حتما نباید لاگین شه
             #login(request, profile.user)
             #ادرس صفحه ی بعد از عضویت. یا لاگ این. یا تایید با ایمیل
