@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>in test exchange</title>
-</head>
-<body>
+{% extends 'accounts/base.html' %}
 
-</body>
-</html>
+{% block header_files %}
+
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {% include 'accounts/form_renderer.html' with form=form only %}
+        <button type="submit">تبدیل</button>
+    </form>
+
+
+    <a href="{% url 'home_page'  %}">صفحه اصلی</a>
+
+
+        <a href="{% url 'accounts:logout'  %}">خروج از حساب کاربری</a>
+
+
+
+    {% if request.user.is_authenticated %}
+        {{ request.user.profile.get_role_display }}
+        {{ request.user.profile.role }}
+
+    {% endif %}
+
+{% endblock %}
+
+
+<div>
+        <span>{{ item.label }}</span>
+        <span>{{ item }}</span>
+        <span>{{ item.errors }}</span>
+
+        {{ item.end }}
+        {{ employee.user.last_name }}
+
+    </div>

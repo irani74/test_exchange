@@ -1,4 +1,4 @@
-from django.forms import Form, forms
+from django import forms
 from transactions.models import TransactionCost
 from django.shortcuts import render
 from django.views import View
@@ -29,8 +29,17 @@ class TransactionCostForm(forms.Form):
 
 
 class TestExchange(forms.Form):
+    start = forms.IntegerField(required=True, label='مبلغ ارز مبدا')
+    end = forms.IntegerField(required=True, label='مبلغ دریافتی ارز مقصد')
+    moneyType = forms.CharField(required=True, label='نوع ارز دریافتی')
 
 
+    # role_type = ROLE_TYPE_CUSTOMER
 
     def clean(self):
         pass
+        #valid_users = User.objects.filter(username=self.cleaned_data['username'], password=self.cleaned_data[
+         #   'password'])  # , customers_profile__role=ROLE_TYPE_CUSTOMER)
+        #if  :
+         #   raise forms.ValidationError('نام کاربری یا رمز اشتباه است.')
+
