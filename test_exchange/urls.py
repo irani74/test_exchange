@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from test_exchange.views import About , Laws , HomePage
-from transactions.views import TestExchange , CurencyNow , TransactionsCosts
+from transactions.views import TestExchange , CurencyNow #, TransactionsCosts
 #from accounts.views import HomePage2
 urlpatterns = [
     path('admin/', admin.site.urls),

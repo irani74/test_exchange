@@ -63,13 +63,13 @@ class Book(models.Model):
 
 
 
+###
+#class TransactionCost(models.Model):
 
-class TransactionCost(models.Model):
-    #user = models.OneToOneField(to='auth.User', on_delete=models.CASCADE, null=True, blank=True)
+ #   pay_type = models.CharField(max_length=10 ,choices=PAY_TYPES, null=True, blank=True, verbose_name='واریز یا برداشت')
+  #  money_type = models.CharField(max_length=10 ,choices=MONEY_TYPES , null=True, blank=True, verbose_name='نوع پول')
+   # start = models.IntegerField( default= 2,  null=True, blank=True, verbose_name='شروع بازه')
+    #end = models.IntegerField(default= 200, null=True, blank=True, verbose_name='انتهای بازه')
+    #percent = models.FloatField(max_length=5 , default= 2 ,  null=True, blank=True, verbose_name='درصد کارمزد')
 
-    pay_type = models.CharField(max_length=10 ,choices=PAY_TYPES, null=True, blank=True, verbose_name='واریز یا برداشت')
-    money_type = models.CharField(max_length=10 ,choices=MONEY_TYPES , null=True, blank=True, verbose_name='نوع پول')
-    start = models.IntegerField( default= 2,  null=True, blank=True, verbose_name='شروع بازه')
-    end = models.IntegerField(default= 200, null=True, blank=True, verbose_name='انتهای بازه')
-    percent = models.FloatField(max_length=5 , default= 2 ,  null=True, blank=True, verbose_name='درصد کارمزد')
-
+###

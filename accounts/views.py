@@ -36,7 +36,7 @@ class Login(View):
 class Logout(View):
     @staticmethod
     def get(request):
-        logout(request.user)
+        logout(request)
         #redirect
         return redirect('home_page')
 
